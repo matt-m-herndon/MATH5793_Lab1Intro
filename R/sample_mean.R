@@ -1,4 +1,13 @@
-
+#' Biased Sample Covariance
+#'
+#' Calculates the biased sample covariance for a given 2 dimensional dataframe
+#'
+#' @param experiment
+#'
+#' @return
+#' @export
+#'
+#' @examples
 s_mean <- function(experiment){
   # get shape of dataframe
   shape = dim(experiment);

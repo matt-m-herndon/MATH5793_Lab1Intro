@@ -1,0 +1,55 @@
+---
+title: "Lab1Intro"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab1Intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Lab1Intro)
+```
+
+# Package Description
+[Repository on Github](https://github.com/matt-m-herndon/MATH5793_Lab1Intro)
+
+This package was developed as part of Lab 1 for calculating several fundamental statistical estimators for a given 2d dataframe, passed in as a parameter. The package supports the following:
+
+* The sample mean, given by: 
+    $$\bar{x}_k=\frac{1}{N}\sum_{j=1}^{N}x_{jk}$$
+* The sample (biased) covariance matrix, leveraging the sample mean and given by: 
+    $$S_{ik}=\frac{1}{N}\sum_{j=1}^{N}(x_{ji}-\bar{x}_i)(x_{jk}-\bar{x}_k)$$
+* Lastly, the sample correlation matrix, derived from covariance and given by: 
+    $$r_{ik}=\frac{S_{ik}}{\sqrt{S_{ii}}\sqrt{S_{kk}}}$$
+    
+These functions all expect a two dimensional dataframe as an argument.
+
+### Task 3
+
+#### a. JW (1-1,4,5) pages 7,8
+$$\bar{x}_k=\frac{1}{N}\sum_{j=1}^{N}x_{jk} \quad \text{where:}\ \ k=1,2,\ldots, p$$
+$$S_{ik}=\frac{1}{N}\sum_{j=1}^{N}(x_{ji}-\bar{x}_i)(x_{jk}-\bar{x}_k) \quad \text{where:}\ \ i=1,2,\ldots, p,\ \ k=1,2,\ldots, p$$
+$$r_{ik}=\frac{S_{ik}}{\sqrt{S_{ii}}\sqrt{S_{kk}}} \quad \text{where:}\ \ i=1,2,\ldots, p,\ \ k=1,2,\ldots, p$$
+
+#### b. JW (3-27) Page 139
+$$\bar{\textbf{x}}_k=\frac{1}{N}{\textbf{X}}'{\textbf{1}} \\ \textbf{S} = \frac{1}{n-1}{\textbf{X}}'\left({\textbf{I}} - \frac{1}{n}{\textbf{11}}'\right){\textbf{X}}$$
+
+#### c. JW (3-28)
+$$\underset{(\textbf{p}\times \textbf{p})}{\textbf{D}^{-1/2}} = 
+\begin{bmatrix} 
+\sqrt{s_{11}} & 0 & \cdots & 0 \\
+0 & \sqrt{s_{22}} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \sqrt{s_{pp}}
+\end{bmatrix} \\$$
+
+#### d. JW (3-29)
+$$\textbf{R}=\textbf{D}^{-1/2}\textbf{SD}^{-1/2}$$
