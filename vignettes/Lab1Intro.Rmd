@@ -1,6 +1,8 @@
 ---
 title: "Lab1Intro"
-output: rmarkdown::html_vignette
+output: 
+  #- rmarkdown::pdf_document
+  - rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab1Intro}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,28 +23,24 @@ library(Lab1Intro)
 # Package Description
 [Repository on Github](https://github.com/matt-m-herndon/MATH5793_Lab1Intro)
 
-This package was developed as part of Lab 1 for calculating several fundamental statistical estimators for a given 2d dataframe, passed in as a parameter. The package supports the following:
+This package was developed as part of Lab 1 for calculating several fundamental statistical estimators for a given 2D dataframe, passed in as a parameter. The package supports the following:
 
 * The sample mean, given by: 
-    $$\bar{x}_k=\frac{1}{N}\sum_{j=1}^{N}x_{jk}$$
+    $$\bar{x}_k=\frac{1}{N}\sum_{j=1}^{N}x_{jk} \quad \text{where:}\ \ k=1,2,\ldots, p$$
 * The sample (biased) covariance matrix, leveraging the sample mean and given by: 
-    $$S_{ik}=\frac{1}{N}\sum_{j=1}^{N}(x_{ji}-\bar{x}_i)(x_{jk}-\bar{x}_k)$$
+    $$S_{ik}=\frac{1}{N}\sum_{j=1}^{N}(x_{ji}-\bar{x}_i)(x_{jk}-\bar{x}_k) \quad \text{where:}\ \ i=1,2,\ldots, p,\ \ k=1,2,\ldots, p$$
 * Lastly, the sample correlation matrix, derived from covariance and given by: 
-    $$r_{ik}=\frac{S_{ik}}{\sqrt{S_{ii}}\sqrt{S_{kk}}}$$
+    $$r_{ik}=\frac{S_{ik}}{\sqrt{S_{ii}}\sqrt{S_{kk}}} \quad \text{where:}\ \ i=1,2,\ldots, p,\ \ k=1,2,\ldots, p$$
     
-These functions all expect a two dimensional dataframe as an argument.
+Unfortunately for the sake of performance, the functions within this package were developed entirely using pure-R for loops which logically expanded the summations in the above expressions to construct the result matrices. Had matrix operations been permitted, alternate forms would have been used to calculate the same estimators, namely:
 
-### Task 3
+* Matrix-form sample mean:
+$$\bar{\textbf{x}}_k=\frac{1}{N}{\textbf{X}}'{\textbf{1}}$$
 
-#### a. JW (1-1,4,5) pages 7,8
-$$\bar{x}_k=\frac{1}{N}\sum_{j=1}^{N}x_{jk} \quad \text{where:}\ \ k=1,2,\ldots, p$$
-$$S_{ik}=\frac{1}{N}\sum_{j=1}^{N}(x_{ji}-\bar{x}_i)(x_{jk}-\bar{x}_k) \quad \text{where:}\ \ i=1,2,\ldots, p,\ \ k=1,2,\ldots, p$$
-$$r_{ik}=\frac{S_{ik}}{\sqrt{S_{ii}}\sqrt{S_{kk}}} \quad \text{where:}\ \ i=1,2,\ldots, p,\ \ k=1,2,\ldots, p$$
+* Matrix-form biased sample covariance:
+$$\textbf{S} = \frac{1}{n-1}{\textbf{X}}'\left({\textbf{I}} - \frac{1}{n}{\textbf{11}}'\right){\textbf{X}}$$
 
-#### b. JW (3-27) Page 139
-$$\bar{\textbf{x}}_k=\frac{1}{N}{\textbf{X}}'{\textbf{1}} \\ \textbf{S} = \frac{1}{n-1}{\textbf{X}}'\left({\textbf{I}} - \frac{1}{n}{\textbf{11}}'\right){\textbf{X}}$$
-
-#### c. JW (3-28)
+* Matrix-form sample correlation:
 $$\underset{(\textbf{p}\times \textbf{p})}{\textbf{D}^{-1/2}} = 
 \begin{bmatrix} 
 \sqrt{s_{11}} & 0 & \cdots & 0 \\
@@ -51,5 +49,23 @@ $$\underset{(\textbf{p}\times \textbf{p})}{\textbf{D}^{-1/2}} =
 0 & 0 & \cdots & \sqrt{s_{pp}}
 \end{bmatrix} \\$$
 
-#### d. JW (3-29)
 $$\textbf{R}=\textbf{D}^{-1/2}\textbf{SD}^{-1/2}$$
+
+### Examples
+
+This package may be accessed by scoping **Lab1Intro** and calling the desired function. In the following example the mean, biased covariance and correlation for the **T1-2.dat** dataset are calculated:
+
+
+```{r}
+# Load Table 1-2 into 40x3 dataframe 
+t1_2_data = read.csv('../T1-2.dat',sep='');
+
+# calculate sample means
+Lab1Intro::s_mean(t1_2_data)
+
+# calculate biased sample covariance matrix
+Lab1Intro::s_cov(t1_2_data)
+
+# calculate sample correlation matrix
+Lab1Intro::s_corr(t1_2_data)
+```

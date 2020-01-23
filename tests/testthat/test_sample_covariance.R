@@ -15,6 +15,6 @@ test_that("sample covariance does not match with ground truth", {
   # 3. Remove names so that types match
   ground_truth = unname(cov(fake_data) * (test_trials-1)/test_trials);
 
-  # compare ground truth mean with custom sample mean
+  # compare ground truth cov with s_cov
   expect_equal(test_result, ground_truth)
 })
