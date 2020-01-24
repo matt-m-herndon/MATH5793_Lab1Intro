@@ -1,13 +1,21 @@
 #' Biased Sample Covariance
 #'
-#' Calculates the biased sample covariance for a given 2 dimensional dataframe
+#' Calculates the biased sample covariance matrix for a given NxP
+#' multivariate dataframe, where N is the number of trials in the
+#' experiment and P is the number of variables.
 #'
-#' @param experiment
+#' @param experiment A two dimensional dataframe of size NxP
 #'
-#' @return
+#' @return The RxR covariance matrix for the experimental data.
 #' @export
 #'
 #' @examples
+#' # generate 10x3 dataframe of random values for testing
+#' fake_data = data.frame(replicate(3,sample(100,10,rep=TRUE))) / 100
+#'
+#' # run fake data through the custom sample covariance function
+#' test_result = s_cov(fake_data);
+#'
 s_cov <- function(experiment){
   # get shape of dataframe
   shape = dim(experiment);
