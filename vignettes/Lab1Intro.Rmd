@@ -69,3 +69,15 @@ Lab1Intro::s_cov(t1_2_data)
 # calculate sample correlation matrix
 Lab1Intro::s_corr(t1_2_data)
 ```
+
+
+### Additional Information
+
+It was unclear where to put the other tasks from the assigment sheet unrelated to the core material, so they'll be added here. [This]([Repository on Github](https://github.com/matt-m-herndon/MATH5793_Lab1Intro)) is a link to the RStudio documentation about package making, and the assessment for this course (MATH 5793 in my case) is as follows:
+
+1. Clicker quiz each class and lab (Total 10%)
+2. 4 assignments (20% Total)
+3. Laboratories (10% Total)
+4. 2 exams (10% each, Total 20%)
+5. 3 projects (More weighting on third project)
+6. Final exam (30%)
